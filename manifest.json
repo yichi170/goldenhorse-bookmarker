@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Goldenhorse Screening Bookmarker",
+  "version": "1.0",
+  "description": "Bookmark film screenings and highlight them on tixcraft",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "js": ["scripts/bookmark.js"],
+      "matches": ["https://www.goldenhorse.org.tw/*"]
+    },
+    {
+      "js": ["scripts/highlight.js"],
+      "matches": ["https://tghff.tixcraft.com/*"]
+    }
+  ]
+}
+

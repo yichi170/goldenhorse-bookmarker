@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 10px 20px 20px 20px; /* top, right, bottom, left */
+    max-width: 300px;
+}
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#bookmark-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.bookmark-card {
+    display: flex;               /* Use flexbox for layout */
+    justify-content: space-between; /* Space between items */
+    align-items: center;    /* vertically center the items */
+
+    padding: 12px;              /* Add some padding */
+    border-radius: 5px;
+    margin-bottom: 10px;        /* Space between cards */
+    background-color: #f0f0f0;
+    min-width: 250px;
+}
+
+.bookmark-content {
+    display: flex;
+    flex-direction: column;      /* Stack children vertically */
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+p {
+    margin: 5px 0;
+}
+
+a {
+    margin: 0;
+    font-size: 1.5em;
+    color: black;
+    font-weight: bold;
+
+    text-decoration: none;      /* Remove underline */
+}
+
+a:hover {
+    text-decoration: underline;  /* Underline on hover */
+    text-underline-offset: 2.5px;
+}
+
+.delete-button {
+    padding: 8px;
+    background-color: coral;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+
+    height: 24px;
+    width: 24px;
+    display: flex; /* Use flexbox to center the icon */
+    align-items: center; /* Center vertically */
+    justify-content: center;
+}
+
+.delete-button svg {
+    fill: currentColor;
+    transition: color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}

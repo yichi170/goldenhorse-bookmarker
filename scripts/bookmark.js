@@ -8,6 +8,7 @@ function addBookmarkButtons() {
         if (row.querySelector(".bookmark-button")) return;
 
         const timeCell = row.querySelector(".time");
+        const roomCell = row.querySelector(".room span");
         const titleCell = row.querySelector(".title .film_url a");
 
         if (!timeCell || !titleCell) return;
@@ -15,6 +16,8 @@ function addBookmarkButtons() {
         const screeningTime = timeCell.textContent.trim();
         const filmTitle = titleCell.textContent.trim();
         const filmLink = titleCell.href;
+        const cinemaHall = roomCell ? roomCell.textContent.trim() : '';
+        console.log(cinemaHall);
 
         const bookmarkButton = document.createElement("button");
         bookmarkButton.classList.add("bookmark-button");
@@ -25,7 +28,10 @@ function addBookmarkButtons() {
         chrome.storage.local.get("bookmarkedScreenings", function(result) {
             const bookmarkedScreenings = result.bookmarkedScreenings || [];
             const isBookmarked = bookmarkedScreenings.some(
-                (screening) => screening.date === screeningDate && screening.time === screeningTime && screening.title === filmTitle
+                (screening) => screening.date === screeningDate &&
+                               screening.time === screeningTime &&
+                               screening.title === filmTitle &&
+                               screening.cinema == cinemaHall
             );
 
             if (isBookmarked) {
@@ -38,7 +44,13 @@ function addBookmarkButtons() {
             // Add click event listener to button
             bookmarkButton.addEventListener("click", function () {
                 // Add new screening to bookmarks
-                bookmarkedScreenings.push({ date: screeningDate, time: screeningTime, title: filmTitle, link: filmLink });
+                bookmarkedScreenings.push({
+                    date: screeningDate,
+                    time: screeningTime,
+                    title: filmTitle,
+                    link: filmLink,
+                    cinema: cinemaHall
+                });
 
                 // Save updated bookmarks to chrome.storage.local
                 chrome.storage.local.set({ bookmarkedScreenings }, function() {
